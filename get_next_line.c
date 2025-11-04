@@ -6,7 +6,7 @@
 /*   By: algasnie <algasnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 12:13:25 by algasnie          #+#    #+#             */
-/*   Updated: 2025/11/04 16:17:30 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/11/04 16:38:15 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,27 +56,22 @@ char	*get_next_line(int fd)
 	char	*buffer;
 	int		len_buffer;
 	int		sz;
+	char	*tmp;
 
 	len_buffer = 1;
 	buffer = malloc(sizeof(char) * (len_buffer + 1));
 	
+
 	
-	
-	/*if (sz < 0)
-		return (NULL);*/
-	sz = read(fd, buffer, len_buffer);
-	printf("buf: %s\n", buffer);
-	list[num_node]->line = buffer;
-	printf("l[]%s\n", list[num_node]->line);
-	
-	
-	
+	list[num_node]->line = ft_strjoin("","");
+	sz = 1;
 	while(sz)
 	{
 		sz = read(fd, buffer, len_buffer);
 		printf("\nsz :%d\n", sz);
 		printf("buf: %s\n", buffer);
-		ft_strjoin(list[num_node]->line, buffer);
+		tmp = list[num_node]->line;
+		list[num_node]->line = ft_strjoin(tmp, buffer);
 		printf("l[]: %s\n", list[num_node]->line);
 	}
 

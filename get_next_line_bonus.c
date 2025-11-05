@@ -6,7 +6,7 @@
 /*   By: algasnie <algasnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 12:13:25 by algasnie          #+#    #+#             */
-/*   Updated: 2025/11/05 14:21:42 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/11/05 14:53:32 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	*ft_lst_shr(t_list **lst, int fd)
 		current = current->next;
 	}
 	if (current->fd == fd)
-			return (current);
+		return (current);
 	return (NULL);
 }
 
@@ -55,34 +55,15 @@ t_list	*ft_createlst_add_back(t_list **lst, int fd)
 	return (new_node);
 }
 
-char	*get_next_line(int fd)
+void	ft_read(t_list *adr_node, int fd)
 {
-	static t_list	**list;	
-	t_list			*adr_node;
-
-	if (fd < 0)
-		return (NULL);
-	
-	if (!list) //create list if doesn't exist
-	{
-		list = malloc(sizeof(t_list *));
-		if (!list)
-			return (NULL);
-	}
-
-	adr_node = ft_lst_shr(list, fd); //search if this fd is already in
-	if (adr_node == NULL)
-		adr_node = ft_createlst_add_back(list, fd); //create node @fd and add back of the list
-
 	int		sz;
 	char	*buffer;
 	char	*tmp;
-	char	*result;
 
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
-		return (NULL);
-	
+		return ;
 	sz = 1;
 	while (sz && !ft_strchr(adr_node->line, '\n'))
 	{
@@ -96,34 +77,47 @@ char	*get_next_line(int fd)
 			free(tmp);
 		}
 	}
+}
 
-	//print jusquau \n ou \0
-	//char	*ft_substr(char const *s, unsigned int start, size_t len);
-	int	i;
+void	ft_result(t_list *adr_node, char *result)
+{
+	char	*tmp;
+	int		i;
+
 	i = 0;
-	
+	result = NULL;
 	while (adr_node->line[i])
 	{
 		if (adr_node->line[i] == '\n' || adr_node->line[i] == '\0')
+		{
 			result = ft_substr(adr_node->line, 0, i);
+			break ;
+		}
 		i++;
 	}
-	
-	//sub
 	tmp = ft_substr(adr_node->line, i + 1, ft_strlen(adr_node->line));
 	adr_node->line = tmp;
-	free(tmp);
-
-	return (result);
 }
 
-
-int	main(void)
+char	*get_next_line(int fd)
 {
-	int	fd;
-	fd = open("test.txt", O_RDONLY);
-	printf("1: %s\n\n", get_next_line(fd));
-	printf("2: %s\n\n", get_next_line(fd));
+	static t_list	**list;	
+	t_list			*adr_node;
+	char			*result;
 
-	return (0);
+	result = NULL;
+	if (fd < 0)
+		return (NULL);
+	if (!list)
+	{
+		list = malloc(sizeof(t_list *));
+		if (!list)
+			return (NULL);
+	}
+	adr_node = ft_lst_shr(list, fd);
+	if (adr_node == NULL)
+		adr_node = ft_createlst_add_back(list, fd);
+	ft_read(adr_node, fd);
+	ft_result(adr_node, result);
+	return (result);
 }

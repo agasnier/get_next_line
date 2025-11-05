@@ -6,7 +6,7 @@
 /*   By: algasnie <algasnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 12:13:54 by algasnie          #+#    #+#             */
-/*   Updated: 2025/11/05 14:03:51 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/11/05 14:54:16 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *str)
 	size_t	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i] != '\0')
 		i++;
 	return (i);
@@ -72,7 +74,7 @@ char	*ft_strdup(const char *s)
 	i = 0;
 	if (!t)
 		return (NULL);
-	while (i <= size)
+	while (i < size)
 	{
 		t[i] = s[i];
 		i++;

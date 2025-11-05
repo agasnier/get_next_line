@@ -6,7 +6,7 @@
 /*   By: algasnie <algasnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 12:13:54 by algasnie          #+#    #+#             */
-/*   Updated: 2025/11/05 13:11:48 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/11/05 14:03:51 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,47 +46,65 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (t);
 }
 
-
-
-t_list	*ft_lst_shr(t_list **lst, int fd)
+char	*ft_strchr(const char *s, int c)
 {
-	t_list	*current;
-
-	if (!lst || !*lst)
+	if (!s)
 		return (NULL);
-	current = *lst;
-	while (current->next)
+	while (*s != '\0')
 	{
-		if (current->fd == fd)
-			return (current);
-		current = current->next;
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
 	}
-	if (current->fd == fd)
-			return (current);
+	if (*s == (char)c)
+		return ((char *)s);
 	return (NULL);
 }
 
-t_list	*ft_createlst_add_back(t_list **lst, int fd)
+char	*ft_strdup(const char *s)
 {
-	t_list	*new_node;
-	t_list	*last;
+	char	*t;
+	int		size;
+	int		i;
 
-	if (!lst)
+	size = ft_strlen(s);
+	t = malloc(sizeof(char) * (size + 1));
+	i = 0;
+	if (!t)
 		return (NULL);
-	new_node = malloc(sizeof(t_list));
-	if (!new_node)
-		return (NULL);
-	new_node->fd = fd;
-	new_node->line = NULL;
-	new_node->next = NULL;
-	if (*lst == NULL)
+	while (i <= size)
 	{
-		*lst = new_node;
-		return (new_node);
+		t[i] = s[i];
+		i++;
 	}
-	last = *lst;
-	while (last->next != NULL)
-		last = last->next;
-	last->next = new_node;
-	return (new_node);
+	t[i] = '\0';
+	return (t);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*t;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	if (start >= ft_strlen(s))
+	{
+		t = ft_strdup("");
+		return (t);
+	}
+	if ((ft_strlen(s) - start) < len)
+		t = malloc(sizeof(char) * (ft_strlen(s) - start) + 1);
+	else
+		t = malloc(sizeof(char) * (len + 1));
+	if (!t)
+		return (NULL);
+	i = 0;
+	while (i < len && s[start + i])
+	{
+		t[i] = s[start + i];
+		i++;
+	}
+	t[i] = '\0';
+	return (t);
 }

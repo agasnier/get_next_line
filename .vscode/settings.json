@@ -8,6 +8,8 @@
 		"span": "c",
 		"get_next_line.h": "c",
 		"cstdlib": "c",
-		"get_next_line_bonus.h": "c"
+		"get_next_line_bonus.h": "c",
+		"format": "c",
+		"initializer_list": "c"
 	}
 }

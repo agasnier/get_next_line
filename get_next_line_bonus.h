@@ -6,7 +6,7 @@
 /*   By: algasnie <algasnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 12:14:10 by algasnie          #+#    #+#             */
-/*   Updated: 2025/11/05 13:11:40 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/11/05 13:54:03 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,17 @@ typedef struct s_list
 
 //get_next_line.c
 char	*get_next_line(int fd);
+t_list	*ft_lst_shr(t_list **lst, int fd);
+t_list	*ft_createlst_add_back(t_list **lst, int fd);
 
 
 //get_next_line_utils.c
 size_t	ft_strlen(const char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
-t_list	*ft_lst_shr(t_list **lst, int fd);
-t_list	*ft_createlst_add_back(t_list **lst, int fd);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strdup(const char *s);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+
 
 
 #endif

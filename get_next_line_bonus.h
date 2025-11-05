@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <algasnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 12:14:10 by algasnie          #+#    #+#             */
-/*   Updated: 2025/11/05 10:17:00 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/11/05 11:30:49 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <stdio.h>
 # include <unistd.h>
@@ -29,6 +29,7 @@ typedef struct s_list
 
 //get_next_line.c
 char	*get_next_line(int fd);
+
 
 //get_next_line_utils.c
 size_t	ft_strlen(const char *str);

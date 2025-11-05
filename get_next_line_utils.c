@@ -6,7 +6,7 @@
 /*   By: algasnie <algasnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 12:13:54 by algasnie          #+#    #+#             */
-/*   Updated: 2025/11/05 10:14:00 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/11/05 11:11:23 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,7 @@ t_list	*ft_lst_shr(t_list **lst, int fd)
 {
 	t_list	*current;
 
-	printf("lst_shr\n\n");
-	if (!lst || *lst)
+	if (!lst || !*lst)
 		return (NULL);
 	current = *lst;
 	while (current->next)
@@ -98,6 +97,7 @@ t_list	*ft_lstnew(int	fd)
 	if (!new_node)
 		return (NULL);
 	new_node->fd = fd;
+	new_node->line = "\0";
 	new_node->next = NULL;
 	return (new_node);
 }

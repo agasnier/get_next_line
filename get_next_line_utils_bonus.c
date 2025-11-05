@@ -6,7 +6,7 @@
 /*   By: algasnie <algasnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 12:13:54 by algasnie          #+#    #+#             */
-/*   Updated: 2025/11/05 11:23:01 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/11/05 13:11:48 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,30 +46,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (t);
 }
 
-t_list	*ft_lstlast(t_list *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next != NULL)
-		lst = lst->next;
-	return (lst);
-}
 
-t_list	*ft_lstadd_back(t_list **lst, t_list *new)
-{
-	t_list	*last;
-
-	if (!lst || !new)
-		return (NULL);
-	if (*lst == NULL)
-	{
-		*lst = new;
-		return (new);
-	}
-	last = ft_lstlast(*lst);
-	last->next = new;
-	return (new);
-}
 
 t_list	*ft_lst_shr(t_list **lst, int fd)
 {
@@ -89,15 +66,27 @@ t_list	*ft_lst_shr(t_list **lst, int fd)
 	return (NULL);
 }
 
-t_list	*ft_lstnew(int	fd)
+t_list	*ft_createlst_add_back(t_list **lst, int fd)
 {
 	t_list	*new_node;
+	t_list	*last;
 
+	if (!lst)
+		return (NULL);
 	new_node = malloc(sizeof(t_list));
 	if (!new_node)
 		return (NULL);
 	new_node->fd = fd;
-	new_node->line = "\0";
+	new_node->line = NULL;
 	new_node->next = NULL;
+	if (*lst == NULL)
+	{
+		*lst = new_node;
+		return (new_node);
+	}
+	last = *lst;
+	while (last->next != NULL)
+		last = last->next;
+	last->next = new_node;
 	return (new_node);
 }

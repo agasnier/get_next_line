@@ -6,7 +6,7 @@
 /*   By: algasnie <algasnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 19:58:32 by algasnie          #+#    #+#             */
-/*   Updated: 2025/11/06 12:06:10 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/11/06 12:22:16 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ static char	*ft_extract_line(char *tmp)
 		return (NULL);
 	while (tmp[i] && tmp[i] != '\n')
 		i++;
-	line = ft_substr(tmp, 0, i + 1);
+	if (tmp[i] == '\n')
+		line = ft_substr(tmp, 0, i + 1);
+	else
+		line = ft_substr(tmp, 0, i);
 	return (line);
 }
 
@@ -78,7 +81,6 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	tmp = NULL;
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);

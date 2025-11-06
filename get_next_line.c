@@ -6,7 +6,7 @@
 /*   By: algasnie <algasnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 19:58:32 by algasnie          #+#    #+#             */
-/*   Updated: 2025/11/06 11:49:09 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/11/06 12:06:10 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!tmp)
-		tmp = ft_strdup("");
-	if (!tmp)
-		return (NULL);
+	tmp = NULL;
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);

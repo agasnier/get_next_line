@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: algasnie <algasnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 19:58:32 by algasnie          #+#    #+#             */
-/*   Updated: 2025/11/06 12:56:52 by algasnie         ###   ########.fr       */
+/*   Updated: 2025/11/06 12:54:06 by algasnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_read_fd(int fd, char *buffer, char *tmp)
 {
@@ -75,7 +75,7 @@ static char	*ft_update_tmp(char *tmp)
 
 char	*get_next_line(int fd)
 {
-	static char	*tmp;
+	static char	*tmp[1024];
 	char		*line;
 	char		*buffer;
 
@@ -84,11 +84,11 @@ char	*get_next_line(int fd)
 	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	tmp = ft_read_fd(fd, buffer, tmp);
+	tmp[fd] = ft_read_fd(fd, buffer, tmp[fd]);
 	free(buffer);
-	if (!tmp)
+	if (!tmp[fd])
 		return (NULL);
-	line = ft_extract_line(tmp);
-	tmp = ft_update_tmp(tmp);
+	line = ft_extract_line(tmp[fd]);
+	tmp[fd] = ft_update_tmp(tmp[fd]);
 	return (line);
 }

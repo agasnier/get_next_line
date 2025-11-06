@@ -1,3 +1,0 @@
-Une seule ligne tres tres tres tres tres tres tres tres tres tres tres tres longue pour tester le BUFFER_SIZE
-Ligne courte
-Encore une ligne

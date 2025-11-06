@@ -1,4 +1,0 @@
-Bonjour le monde!
-Ceci est la ligne 2
-Et voici la ligne 3
-Ligne 4 sans newline a la fin
